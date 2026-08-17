@@ -1,7 +1,7 @@
 # Reset dữ liệu đặt xe
 
-Workflow `.github/workflows/reset-bookings.yml` tự chạy vào 00:00 sáng thứ Hai
-hàng tuần theo giờ Việt Nam. Công việc này:
+Workflow `.github/workflows/reset-bookings.yml` tự chạy vào 07:00 sáng ngày 1
+hàng tháng theo giờ Việt Nam. Công việc này:
 
 1. Xóa toàn bộ dữ liệu trong bảng `booking_requests`.
 2. Đặt lại bộ đếm để đơn tiếp theo có `id = 1`.
@@ -17,7 +17,7 @@ hàng tuần theo giờ Việt Nam. Công việc này:
 ## Reset ngay lập tức
 
 1. Mở tab **Actions** trên GitHub.
-2. Chọn **Reset dữ liệu đặt xe hàng tuần**.
+2. Chọn **Reset dữ liệu đặt xe hàng tháng**.
 3. Chọn **Run workflow > Run workflow**.
 
 Thao tác này không thể hoàn tác. Email admin đã nhận trước đó không bị xóa.

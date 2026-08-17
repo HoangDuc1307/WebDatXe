@@ -1,9 +1,9 @@
-name: Reset dữ liệu đặt xe hàng tuần
+name: Reset dữ liệu đặt xe hàng tháng
 
 on:
   schedule:
-    # 17:00 Chủ nhật UTC = 00:00 Thứ hai giờ Việt Nam.
-    - cron: "0 17 * * 0"
+    # 00:00 UTC ngày 1 = 07:00 sáng ngày 1 giờ Việt Nam.
+    - cron: "0 0 1 * *"
   workflow_dispatch:
 
 permissions:
