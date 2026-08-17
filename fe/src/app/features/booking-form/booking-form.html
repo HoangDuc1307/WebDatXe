@@ -1,0 +1,165 @@
+<main class="booking-page">
+  <header class="brand-line">
+    <strong>Dịch vụ xe khách Như Khánh</strong>
+    <span aria-hidden="true">•</span>
+    <a href="tel:0976739971" aria-label="Gọi hotline 0976 739 971">Hotline: 0976 739 971</a>
+  </header>
+
+  <section class="intro" aria-labelledby="page-title">
+    <p class="eyebrow">Tuyến cố định mỗi ngày</p>
+    <h1 id="page-title">Mỹ Đình <span>↔</span> Sơn La</h1>
+    <p class="intro-copy">
+      Gửi thông tin chuyến đi. Nhà xe sẽ gọi lại để xác nhận giờ đón và tình trạng giường.
+    </p>
+
+    <div class="route-line" aria-label="Tuyến Bến xe Mỹ Đình đến Sơn La và ngược lại">
+      <div class="route-stop">
+        <span class="route-dot"></span>
+        <div><strong>Bến xe Mỹ Đình</strong><small>Đầu tuyến Hà Nội</small></div>
+      </div>
+      <div class="route-track"><span>QL6</span></div>
+      <div class="route-stop">
+        <span class="route-dot"></span>
+        <div><strong>Tuyến Sơn La</strong><small>Điểm đón hoặc trả của bạn</small></div>
+      </div>
+    </div>
+
+    <div class="notice">
+      <strong>Lưu ý</strong>
+      <span>Yêu cầu phải được gửi trước giờ đi ít nhất 1 tiếng.</span>
+    </div>
+  </section>
+
+  <section class="form-card" aria-labelledby="form-title">
+    <header class="form-heading">
+      <p>Phiếu yêu cầu</p>
+      <h2 id="form-title">Đặt chỗ cho chuyến đi</h2>
+    </header>
+
+    <form (submit)="onSubmit(); $event.preventDefault()">
+      <fieldset>
+        <legend>Chọn chiều đi</legend>
+        <div class="direction-options">
+          <label class="direction-option">
+            <input type="radio" value="hanoi_to_son_la" [formField]="bookingForm.direction" />
+            <span><b>Hà Nội</b><i>→</i><b>Sơn La</b></span>
+          </label>
+          <label class="direction-option">
+            <input type="radio" value="son_la_to_hanoi" [formField]="bookingForm.direction" />
+            <span><b>Sơn La</b><i>→</i><b>Hà Nội</b></span>
+          </label>
+        </div>
+      </fieldset>
+
+      <div class="field-grid">
+        <label class="field">
+          <span>Họ và tên</span>
+          <input type="text" autocomplete="name" [formField]="bookingForm.fullName" />
+          @if (bookingForm.fullName().touched() && bookingForm.fullName().errors().length) {
+            <small class="field-error">{{ bookingForm.fullName().errors()[0].message }}</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Số điện thoại</span>
+          <input type="tel" autocomplete="tel" placeholder="0901 234 567" [formField]="bookingForm.phone" />
+          @if (bookingForm.phone().touched() && bookingForm.phone().errors().length) {
+            <small class="field-error">{{ bookingForm.phone().errors()[0].message }}</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Điểm đón</span>
+          <input type="text" placeholder="Ví dụ: Bến xe Mỹ Đình" [formField]="bookingForm.pickupLocation" />
+          @if (bookingForm.pickupLocation().touched() && bookingForm.pickupLocation().errors().length) {
+            <small class="field-error">{{ bookingForm.pickupLocation().errors()[0].message }}</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Điểm trả</span>
+          <input type="text" placeholder="Ví dụ: Mộc Châu, Sơn La" [formField]="bookingForm.dropoffLocation" />
+          @if (bookingForm.dropoffLocation().touched() && bookingForm.dropoffLocation().errors().length) {
+            <small class="field-error">{{ bookingForm.dropoffLocation().errors()[0].message }}</small>
+          }
+        </label>
+
+        <label class="field field-wide">
+          <span>Ngày giờ đi</span>
+          <input type="datetime-local" [formField]="bookingForm.pickupTime" />
+          <small class="field-hint">Chọn giờ bạn muốn bắt đầu chuyến đi.</small>
+          @if (bookingForm.pickupTime().touched() && bookingForm.pickupTime().errors().length) {
+            <small class="field-error">{{ bookingForm.pickupTime().errors()[0].message }}</small>
+          }
+        </label>
+
+        <label class="field">
+          <span>Loại giường</span>
+          <select [formField]="bookingForm.bedType">
+            <option value="single">Giường đơn</option>
+            <option value="double">Giường đôi</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Số lượng giường</span>
+          <input type="number" inputmode="numeric" [formField]="bookingForm.bedQuantity" />
+          @if (bookingForm.bedQuantity().touched() && bookingForm.bedQuantity().errors().length) {
+            <small class="field-error">{{ bookingForm.bedQuantity().errors()[0].message }}</small>
+          }
+        </label>
+
+        <label class="field field-wide">
+          <span>Số hành khách</span>
+          <input type="number" inputmode="numeric" [formField]="bookingForm.passengerCount" />
+          @if (bookingForm.passengerCount().touched() && bookingForm.passengerCount().errors().length) {
+            <small class="field-error">{{ bookingForm.passengerCount().errors()[0].message }}</small>
+          }
+        </label>
+
+        <div class="preference-heading field-wide">
+          <strong>Vị trí mong muốn</strong>
+          <small>Nhà xe sẽ kiểm tra và xác nhận lại vị trí qua điện thoại.</small>
+        </div>
+
+        <label class="field">
+          <span>Tầng mong muốn</span>
+          <select [formField]="bookingForm.preferredFloor">
+            <option value="no_preference">Không yêu cầu</option>
+            <option value="floor_1">Tầng 1</option>
+            <option value="floor_2">Tầng 2</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span>Vị trí mong muốn</span>
+          <select [formField]="bookingForm.preferredPosition">
+            <option value="no_preference">Không yêu cầu</option>
+            <option value="window">Gần cửa sổ</option>
+            <option value="near_door">Gần cửa lên xuống</option>
+            <option value="front">Phía đầu xe</option>
+            <option value="middle">Giữa xe</option>
+            <option value="back">Cuối xe</option>
+          </select>
+        </label>
+
+        <label class="field field-wide">
+          <span>Ghi chú <em>(không bắt buộc)</em></span>
+          <textarea rows="3" placeholder="Hành lý, vị trí cụ thể hoặc yêu cầu khác" [formField]="bookingForm.note"></textarea>
+        </label>
+      </div>
+
+      @if (successMessage()) {
+        <p class="form-message success" role="status">{{ successMessage() }}</p>
+      }
+      @if (errorMessage()) {
+        <p class="form-message error" role="alert">{{ errorMessage() }}</p>
+      }
+
+      <button class="submit-button" type="submit" [disabled]="isSubmitting()">
+        @if (isSubmitting()) { Đang gửi... } @else { Gửi yêu cầu đặt xe }
+      </button>
+      <p class="privacy-note">Thông tin chỉ được dùng để nhà xe liên hệ xác nhận chuyến.</p>
+    </form>
+  </section>
+</main>

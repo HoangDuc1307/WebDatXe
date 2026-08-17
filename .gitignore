@@ -1,0 +1,39 @@
+# Dependencies
+**/node_modules/
+
+# Environment variables and secrets
+**/.env
+**/.env.*
+!**/.env.example
+
+# Build and test output
+**/dist/
+**/out-tsc/
+**/coverage/
+**/.angular/
+**/.cache/
+**/tmp/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Editors
+.vscode/
+.idea/
+.codex/
+**/AGENTS.md
+*.suo
+*.user
+*.sln.docstates
+
+# Operating system files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# TypeScript cache
+*.tsbuildinfo
