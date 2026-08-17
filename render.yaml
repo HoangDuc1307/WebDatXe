@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: webdatxe-api-1307
+    name: webdatxe-api
     runtime: node
     plan: free
     rootDir: be
@@ -11,7 +11,7 @@ services:
       - key: NODE_ENV
         value: production
       - key: FRONTEND_URL
-        value: https://webdatxe-nhu-khanh-1307.onrender.com
+        value: https://webdatxe-nhu-khanh.onrender.com
       - key: DATABASE_URL
         sync: false
       - key: GOOGLE_SCRIPT_URL
@@ -20,7 +20,7 @@ services:
         sync: false
 
   - type: web
-    name: webdatxe-nhu-khanh-1307
+    name: webdatxe-nhu-khanh
     runtime: static
     rootDir: fe
     buildCommand: npm ci && npm run build

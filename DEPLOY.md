@@ -35,8 +35,8 @@ git push
 2. Chọn **New > Blueprint**.
 3. Chọn repository `HoangDuc1307/WebDatXe`.
 4. Render đọc file `render.yaml` và tạo hai dịch vụ:
-   - `webdatxe-api-1307`: backend Node.js.
-   - `webdatxe-nhu-khanh-1307`: frontend Angular.
+   - `webdatxe-api`: backend Node.js.
+   - `webdatxe-nhu-khanh`: frontend Angular.
 5. Nhập các biến bí mật khi Render yêu cầu:
    - `DATABASE_URL`: connection string của Neon.
    - `GOOGLE_SCRIPT_URL`: URL Web App của Apps Script.
@@ -47,8 +47,8 @@ gửi email qua HTTPS.
 
 ## 5. Kiểm tra
 
-1. Mở `https://webdatxe-api-1307.onrender.com/api/health`.
-2. Mở `https://webdatxe-nhu-khanh-1307.onrender.com`.
+1. Mở `https://webdatxe-api.onrender.com/api/health`.
+2. Mở `https://webdatxe-nhu-khanh.onrender.com`.
 3. Gửi một đơn thử.
 4. Kiểm tra bảng `booking_requests` trên Neon và Gmail admin.
 
