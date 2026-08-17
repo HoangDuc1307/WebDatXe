@@ -48,7 +48,7 @@ gửi email qua HTTPS.
 ## 5. Kiểm tra
 
 1. Mở `https://webdatxe-api.onrender.com/api/health`.
-2. Mở `https://webdatxe-nhu-khanh.onrender.com`.
+2. Mở `https://webdatxe-nhu-khanh-zka4.onrender.com`.
 3. Gửi một đơn thử.
 4. Kiểm tra bảng `booking_requests` trên Neon và Gmail admin.
 

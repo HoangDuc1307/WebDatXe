@@ -13,7 +13,7 @@ services:
       - key: NODE_VERSION
         value: 24.17.0
       - key: FRONTEND_URL
-        value: https://webdatxe-nhu-khanh.onrender.com
+        value: https://webdatxe-nhu-khanh-zka4.onrender.com
       - key: DATABASE_URL
         sync: false
       - key: GOOGLE_SCRIPT_URL
