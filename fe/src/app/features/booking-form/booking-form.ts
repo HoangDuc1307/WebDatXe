@@ -66,7 +66,7 @@ export class BookingForm {
 
       try {
         const result = await firstValueFrom(this.bookingService.create(this.bookingModel()));
-        this.successMessage.set(`${result.message} Mã yêu cầu: ${result.bookingId}`);
+        this.successMessage.set(result.message);
       } catch (error) {
         const message =
           error instanceof HttpErrorResponse && error.error?.message
