@@ -1,0 +1,37 @@
+name: Reset dữ liệu đặt xe hàng tuần
+
+on:
+  schedule:
+    # 17:00 Chủ nhật UTC = 00:00 Thứ hai giờ Việt Nam.
+    - cron: "0 17 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reset-bookings:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    defaults:
+      run:
+        working-directory: be
+    env:
+      DATABASE_URL: ${{ secrets.NEON_DATABASE_URL }}
+
+    steps:
+      - name: Lấy source code
+        uses: actions/checkout@v4
+
+      - name: Cài Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24.17.0"
+          cache: npm
+          cache-dependency-path: be/package-lock.json
+
+      - name: Cài dependencies
+        run: npm ci
+
+      - name: Xóa dữ liệu đặt xe
+        run: node scripts/reset-bookings.js
