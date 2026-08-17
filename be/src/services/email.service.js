@@ -72,10 +72,17 @@ async function sendWithGoogleScript(subject, text) {
       subject,
       text,
     }),
-    signal: AbortSignal.timeout(15000),
+    signal: AbortSignal.timeout(45000),
   });
 
-  const result = await response.json();
+  const responseText = await response.text();
+  let result;
+
+  try {
+    result = JSON.parse(responseText);
+  } catch {
+    throw new Error("Google Apps Script trả về dữ liệu không hợp lệ");
+  }
 
   if (!result.success) {
     throw new Error(result.message || "Google Apps Script không thể gửi email");
