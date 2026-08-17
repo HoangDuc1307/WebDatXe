@@ -1,0 +1,31 @@
+services:
+  - type: web
+    name: webdatxe-api-1307
+    runtime: node
+    plan: free
+    rootDir: be
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: FRONTEND_URL
+        value: https://webdatxe-nhu-khanh-1307.onrender.com
+      - key: DATABASE_URL
+        sync: false
+      - key: GOOGLE_SCRIPT_URL
+        sync: false
+      - key: NOTIFICATION_SECRET
+        sync: false
+
+  - type: web
+    name: webdatxe-nhu-khanh-1307
+    runtime: static
+    rootDir: fe
+    buildCommand: npm ci && npm run build
+    staticPublishPath: ./dist/dat-ve-xe-frontend/browser
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

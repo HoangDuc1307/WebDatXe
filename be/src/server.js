@@ -3,6 +3,6 @@ import app from "./app.js";
 
 const port = process.env.PORT || 3000;
 
-app.listen(port, () => {
-  console.log(`Backend đang chạy tại http://localhost:${port}`);
+app.listen(port, "0.0.0.0", () => {
+  console.log(`Backend đang chạy tại cổng ${port}`);
 });

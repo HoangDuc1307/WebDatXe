@@ -5,6 +5,9 @@ const { Pool } = pg;
 // Pool giữ và tái sử dụng các kết nối PostgreSQL.
 const database = new Pool({
   connectionString: process.env.DATABASE_URL,
+  max: 5,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 10000,
 });
 
 export default database;

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Service, inject } from '@angular/core';
+import { environment } from '../../environments/environment';
 
 export type Direction = 'hanoi_to_son_la' | 'son_la_to_hanoi';
 export type BedType = 'single' | 'double';
@@ -35,7 +36,7 @@ interface BookingResponse {
 @Service()
 export class Booking {
   private readonly http = inject(HttpClient);
-  private readonly apiUrl = 'http://localhost:3000/api/bookings';
+  private readonly apiUrl = `${environment.apiUrl}/bookings`;
 
   create(booking: BookingRequest) {
     return this.http.post<BookingResponse>(this.apiUrl, {

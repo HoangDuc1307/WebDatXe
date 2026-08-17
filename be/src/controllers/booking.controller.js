@@ -1,4 +1,5 @@
 import { saveBooking } from "../models/booking.model.js";
+import { sendBookingEmail } from "../services/email.service.js";
 
 export async function createBooking(request, response) {
   const booking = request.body;
@@ -69,6 +70,12 @@ export async function createBooking(request, response) {
   try {
     booking.pickupTime = pickupDate;
     const bookingId = await saveBooking(booking);
+
+    try {
+      await sendBookingEmail(booking, bookingId);
+    } catch (emailError) {
+      console.error("Không thể gửi email thông báo:", emailError.message);
+    }
 
     return response.status(201).json({
       message: "Đã gửi yêu cầu. Nhà xe sẽ gọi điện xác nhận.",
