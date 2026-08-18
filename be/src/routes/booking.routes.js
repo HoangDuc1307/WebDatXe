@@ -1,8 +1,9 @@
 import { Router } from "express";
-import { createBooking } from "../controllers/booking.controller.js";
+import { createBooking, listBlockedDates } from "../controllers/booking.controller.js";
 
 const bookingRouter = Router();
 
 bookingRouter.post("/", createBooking);
+bookingRouter.get("/blocked-dates", listBlockedDates);
 
 export default bookingRouter;

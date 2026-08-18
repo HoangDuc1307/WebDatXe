@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { BookingForm } from './features/booking-form/booking-form';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [BookingForm],
+  imports: [RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss',
 })

@@ -1,4 +1,4 @@
-import { saveBooking } from "../models/booking.model.js";
+import { getBlockedDates, saveBooking } from "../models/booking.model.js";
 import { sendBookingEmail } from "../services/email.service.js";
 
 export async function createBooking(request, response) {
@@ -71,6 +71,12 @@ export async function createBooking(request, response) {
     booking.pickupTime = pickupDate;
     const bookingId = await saveBooking(booking);
 
+    if (bookingId === null) {
+      return response.status(409).json({
+        message: "Nhà xe tạm ngừng nhận đặt vé trong ngày này. Vui lòng chọn ngày khác.",
+      });
+    }
+
     try {
       await sendBookingEmail(booking, bookingId);
     } catch (emailError) {
@@ -86,5 +92,14 @@ export async function createBooking(request, response) {
     return response.status(500).json({
       message: "Không thể lưu yêu cầu đặt xe",
     });
+  }
+}
+
+export async function listBlockedDates(_request, response) {
+  try {
+    return response.json({ dates: await getBlockedDates() });
+  } catch (error) {
+    console.error(error);
+    return response.status(500).json({ message: "Không thể tải lịch nghỉ" });
   }
 }

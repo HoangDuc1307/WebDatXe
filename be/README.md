@@ -33,3 +33,13 @@ Backend chạy tại `http://localhost:3000`.
 - `son_la_to_hanoi`: Sơn La đi Hà Nội.
 
 Khách nhập riêng `pickupLocation` (điểm đón) và `dropoffLocation` (điểm trả). Bến xe Mỹ Đình và Bến xe Sơn La chỉ là gợi ý, không bắt buộc.
+
+## Tạo tài khoản quản trị
+
+Chạy toàn bộ `database.sql`, đặt `ADMIN_USERNAME` và `ADMIN_PASSWORD` (tối thiểu 10 ký tự) trong `.env`, rồi chạy:
+
+```powershell
+npm.cmd run create-admin
+```
+
+Sau khi tạo tài khoản trên production, hãy xóa `ADMIN_PASSWORD` khỏi biến môi trường.

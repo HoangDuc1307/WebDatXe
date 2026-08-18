@@ -1,0 +1,37 @@
+<main class="dashboard">
+  <header class="topbar">
+    <div><p>Nhà xe Như Khánh</p><h1>Lịch ngừng nhận khách</h1></div>
+    <button class="logout" type="button" (click)="logout()">Đăng xuất</button>
+  </header>
+  <div class="layout">
+    <section class="control-card" aria-labelledby="block-title">
+      <p class="eyebrow">Thiết lập lịch nghỉ</p>
+      <h2 id="block-title">Khóa một ngày hoặc cả kỳ nghỉ</h2>
+      <p class="helper">Khách sẽ không thể gửi yêu cầu đặt xe trong khoảng ngày này.</p>
+      <form (submit)="save(); $event.preventDefault()">
+        <label><span>Từ ngày</span><input type="date" [formField]="blockForm.startDate" /></label>
+        <label><span>Đến ngày</span><input type="date" [formField]="blockForm.endDate" /></label>
+        <label class="wide"><span>Lý do hiển thị nội bộ</span><input type="text" [formField]="blockForm.reason" /></label>
+        @if (blockForm.endDate().touched() && blockForm.endDate().errors().length) { <small class="error wide">{{ blockForm.endDate().errors()[0].message }}</small> }
+        <button class="primary wide" type="submit" [disabled]="isSaving()">{{ isSaving() ? 'Đang lưu…' : 'Ngừng nhận khách' }}</button>
+      </form>
+      @if (message()) { <p class="status success" role="status">{{ message() }}</p> }
+      @if (errorMessage()) { <p class="status error" role="alert">{{ errorMessage() }}</p> }
+    </section>
+    <section class="dates-card" aria-labelledby="dates-title">
+      <div class="dates-heading"><div><p class="eyebrow">Các ngày sắp tới</p><h2 id="dates-title">Đang ngừng nhận khách</h2></div><strong>{{ upcomingDates().length }} ngày</strong></div>
+      @if (isLoading()) { <p class="empty">Đang tải lịch…</p> }
+      @else {
+        <div class="date-list">
+          @for (item of upcomingDates(); track item.date) {
+            <article class="date-row">
+              <time [attr.datetime]="item.date"><b>{{ item.date | date:'dd' }}</b><span>Tháng {{ item.date | date:'MM, yyyy' }}</span></time>
+              <p>{{ item.reason || 'Không nhận đặt vé' }}</p>
+              <button type="button" (click)="remove(item.date)" [attr.aria-label]="'Mở lại ngày ' + item.date">Mở lại</button>
+            </article>
+          } @empty { <p class="empty">Chưa có ngày nghỉ sắp tới. Nhà xe đang nhận khách bình thường.</p> }
+        </div>
+      }
+    </section>
+  </div>
+</main>

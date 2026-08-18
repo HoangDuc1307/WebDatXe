@@ -33,6 +33,10 @@ interface BookingResponse {
   bookingId: string;
 }
 
+interface BlockedDatesResponse {
+  dates: Array<{ date: string; reason: string }>;
+}
+
 @Service()
 export class Booking {
   private readonly http = inject(HttpClient);
@@ -43,5 +47,9 @@ export class Booking {
       ...booking,
       pickupTime: new Date(booking.pickupTime).toISOString(),
     });
+  }
+
+  getBlockedDates() {
+    return this.http.get<BlockedDatesResponse>(`${this.apiUrl}/blocked-dates`);
   }
 }

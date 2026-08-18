@@ -57,3 +57,11 @@ Nếu Render báo tên dịch vụ đã tồn tại, đổi cả ba vị trí sa
 - `name` của hai service trong `render.yaml`.
 - `FRONTEND_URL` trong `render.yaml`.
 - `apiUrl` trong `fe/src/environments/environment.production.ts`.
+
+## Kích hoạt trang quản trị
+
+1. Chạy lại toàn bộ `be/database.sql` trong SQL Editor của Neon.
+2. Thêm tạm `ADMIN_USERNAME` và `ADMIN_PASSWORD` (ít nhất 10 ký tự) vào Environment của backend Render.
+3. Mở Shell của backend và chạy `npm run create-admin` một lần.
+4. Xóa `ADMIN_PASSWORD` khỏi Render sau khi tài khoản được tạo; database chỉ lưu mật khẩu đã băm.
+5. Truy cập liên kết **Dành cho nhà xe** ở chân trang hoặc mở trực tiếp `/admin`.

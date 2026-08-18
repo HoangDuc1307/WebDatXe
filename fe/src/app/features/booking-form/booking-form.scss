@@ -257,3 +257,6 @@ input:focus, select:focus, textarea:focus { border-color: var(--route); outline:
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
+
+.site-footer { width: min(1120px, calc(100% - 32px)); margin: -28px auto 0; padding: 20px 0 30px; border-top: 1px solid var(--line); display: flex; justify-content: space-between; color: var(--muted); font-size: .82rem; }
+.site-footer a { color: var(--muted); text-underline-offset: 4px; }.site-footer a:hover { color: var(--route); }

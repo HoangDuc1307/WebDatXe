@@ -20,7 +20,6 @@ services:
         sync: false
       - key: NOTIFICATION_SECRET
         sync: false
-
   - type: web
     name: webdatxe-nhu-khanh
     runtime: static
